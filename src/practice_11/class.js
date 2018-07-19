@@ -24,7 +24,6 @@ class Class{
         if(this.JoinLister){
             this.JoinLister(stu);
         }
-        else console.log("It is not one of us.");
     }
     registerJoinListener(teacher){
         this.JoinLister = (student) => teacher.notifyAppendStudent(student);

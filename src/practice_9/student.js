@@ -7,7 +7,6 @@ class Student extends Person{
         this.klass = klass;
     }
     introduce(){
-        console.log(this.klass.leader, this )
         if(this.klass.leader === this ){
             return super.introduce() + ` I am a Student. I am Leader of ${this.klass.getDisplayName()}.`
         }else{
