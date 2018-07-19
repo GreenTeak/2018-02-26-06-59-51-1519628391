@@ -1,7 +1,9 @@
-
 'use strict'
 import Student from "../practice_8/student"
 class Class{
+
+    leader;
+
     constructor(number){
         this.number = number;
     }
@@ -9,14 +11,27 @@ class Class{
         return `Class ${this.number}`;
     }
     assignLeader(stu){
-        if(this.Students !== undefined && this.Students.contains(stu))
-          this.leader= stu;
-         else console.log("It is not one of us.")
+        if(stu && stu.klass.number === this.number){
+          this.leader = stu;
+          if(this.listener) {
+              this.listener(stu);
+          }
+        }
+        else console.log("It is not one of us.");
     }
     appendMember(stu){
-           this.Students.push(stu);
+        stu.klass = this;
+        if(this.JoinLister){
+            this.JoinLister(stu);
+        }
+        else console.log("It is not one of us.");
+    }
+    registerJoinListener(teacher){
+        this.JoinLister = (student) => teacher.notifyAppendStudent(student);
+    }
+    registerAssignLeaderListener(teacher){
+        this.listener = (student) => teacher.notifyAssignStudent(student);
     }
 }
 export default Class;
-
 

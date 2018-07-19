@@ -1,21 +1,32 @@
 'use strict'
 import Student from "../practice_8/student"
-class Class{
-    constructor(number){
+
+class Class {
+
+    leader;
+
+    constructor(number) {
         this.number = number;
     }
-    getDisplayName(){
+
+    getDisplayName() {
         return `Class ${this.number}`;
     }
-    assignLeader(stu){
-        if(this.Students !== undefined && this.Students.contains(stu))
-          this.leader= stu;
-         else console.log("It is not one of us.")
+
+    assignLeader(stu) {
+        if (stu && stu.klass.number === this.number)
+            this.leader = stu;
+        else console.log("It is not one of us.");
     }
-    appendMember(stu){
-           this.Students.push(stu);
+
+    appendMember(stu) {
+        stu.klass = this;
+    }
+
+    getLeader() {
+        return this.leader;
     }
 }
-export default Class;
 
+export default Class;
 
